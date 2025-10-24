@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>  Web Dev Game </title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <div class="scanline"></div>
+    
+    <header>
+        <h1>⚡  WEB DEV  ⚡</h1>
+    </header>
+
+    <div class="mode-toggle">
+        <button class="mode-btn active" id="flashcards-btn" data-mode="flashcards">
+            Flashcards
+        </button>
+        <button class="mode-btn" id="memory-btn" data-mode="memory">
+             Memory Match
+        </button>
+    </div>
+
+    <!-- flashcards  -->
+    <section id="flashcards-mode" class="active">
+        <div class="stats">
+            <div class="stat-box">
+                <div class="stat-label">PROGRESS</div>
+                <div class="stat-value" id="progress">1/24</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">GOT IT</div>
+                <div class="stat-value" id="got-it-count">0</div>
+            </div>
+        </div>
+
+        <div class="flashcard" id="flashcard" tabindex="0" role="button" aria-label="Flashcard. Press Enter or Space to flip.">
+            <div class="flashcard-inner">
+                <div class="flashcard-face flashcard-front" id="card-front">
+                    HTML
+                </div>
+                <div class="flashcard-face flashcard-back" id="card-back">
+                    HyperText Markup Language
+                </div>
+            </div>
+        </div>
+
+        <div class="flashcard-controls">
+            <button class="control-btn" id="flip-btn">⟳ Flip</button>
+            <button class="control-btn" id="got-it-btn" disabled>✓ Got It</button>
+            <button class="control-btn" id="again-btn" disabled>✗ Again</button>
+        </div>
+    </section>
+
+    <!-- memory game  -->
+    <section id="memory-mode">
+        <div class="memory-stats">
+            <span class="memory-stat">MOVES: <span id="moves">0</span></span>
+            <span class="memory-stat">MATCHES: <span id="matches">0/6</span></span>
+        </div>
+
+        <div class="memory-grid" id="memory-grid"></div>
+
+        <div id="win-message"></div>
+        <button id="reset-btn"> Reset Game</button>
+
+        <div aria-live="polite" aria-atomic="true" class="sr-only" id="match-status"></div>
+    </section>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
