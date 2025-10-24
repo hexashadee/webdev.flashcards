@@ -3,27 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>  Web Dev Game </title>
+    <title>Neon Web Dev Cards</title>
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
     <div class="scanline"></div>
     
     <header>
-        <h1>⚡  WEB DEV  ⚡</h1>
+        <h1>⚡ NEON WEB DEV CARDS ⚡</h1>
     </header>
 
     <div class="mode-toggle">
         <button class="mode-btn active" id="flashcards-btn" data-mode="flashcards">
-            Flashcards
+            💾 Flashcards
         </button>
         <button class="mode-btn" id="memory-btn" data-mode="memory">
-             Memory Match
+            🎮 Memory Match
         </button>
     </div>
 
     <!-- flashcards  -->
     <section id="flashcards-mode" class="active">
+        <h2 class="sr-only">Flashcard Study Mode</h2>
+        
         <div class="stats">
             <div class="stat-box">
                 <div class="stat-label">PROGRESS</div>
@@ -53,8 +55,10 @@
         </div>
     </section>
 
-    <!-- memory game  -->
+    <!-- memory -->
     <section id="memory-mode">
+        <h2 class="sr-only">Memory Match Game</h2>
+        
         <div class="memory-stats">
             <span class="memory-stat">MOVES: <span id="moves">0</span></span>
             <span class="memory-stat">MATCHES: <span id="matches">0/6</span></span>
@@ -63,7 +67,7 @@
         <div class="memory-grid" id="memory-grid"></div>
 
         <div id="win-message"></div>
-        <button id="reset-btn"> Reset Game</button>
+        <button id="reset-btn">🔄 Reset Game</button>
 
         <div aria-live="polite" aria-atomic="true" class="sr-only" id="match-status"></div>
     </section>
