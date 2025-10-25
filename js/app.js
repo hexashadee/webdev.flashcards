@@ -1,4 +1,4 @@
-// data
+// dataset 
 const flashcards = [
     { front: "HTML", back: "HyperText Markup Language" },
     { front: "CSS", back: "Cascading Style Sheets" },
@@ -29,17 +29,17 @@ const flashcards = [
 // memory pairs 
 const memoryPairs = [
     { id: 1, text: "HTML" },
-    { id: 1, text: "HyperText Markup Language" },
+    { id: 1, text: "Markup Language" },
     { id: 2, text: "CSS" },
-    { id: 2, text: "Cascading Style Sheets" },
-    { id: 3, text: "DOM" },
-    { id: 3, text: "Document Object Model" },
-    { id: 4, text: "API" },
-    { id: 4, text: "Application Programming Interface" },
-    { id: 5, text: "JSON" },
-    { id: 5, text: "JavaScript Object Notation" },
-    { id: 6, text: "querySelector" },
-    { id: 6, text: "Selects CSS selector" }
+    { id: 2, text: "Style Sheets" },
+    { id: 3, text: "JavaScript" },
+    { id: 3, text: "Interactivity" },
+    { id: 4, text: "DOM" },
+    { id: 4, text: "Document Model" },
+    { id: 5, text: "API" },
+    { id: 5, text: "Interface" },
+    { id: 6, text: "JSON" },
+    { id: 6, text: "Data Format" }
 ];
 
 // flashcards 
@@ -74,7 +74,9 @@ const winMessage = document.getElementById('win-message');
 const resetBtn = document.getElementById('reset-btn');
 const matchStatus = document.getElementById('match-status');
 
-// toggle 
+
+// toggel mode
+
 flashcardsBtn.addEventListener('click', () => switchMode('flashcards'));
 memoryBtn.addEventListener('click', () => switchMode('memory'));
 
@@ -93,9 +95,11 @@ function switchMode(mode) {
     }
 }
 
-// flashcard
 
-// card content
+// FLASHCARDS MODE
+
+
+//  card content
 function updateCard() {
     const card = flashcards[currentCardIndex];
     cardFront.textContent = card.front;
@@ -103,7 +107,7 @@ function updateCard() {
     isFlipped = false;
     flashcard.classList.remove('flipped');
     
-    // buttons card is flipped
+    // got it and again buttons until card is flipped
     gotItBtn.disabled = true;
     againBtn.disabled = true;
     
@@ -116,12 +120,12 @@ function updateProgress() {
     gotItCountEl.textContent = gotItCount;
 }
 
-// flip
+// flip 
 function flipCard() {
     isFlipped = !isFlipped;
     flashcard.classList.toggle('flipped');
     
-    // buttons
+    // Enable Got It and Again buttons after flipping
     if (isFlipped) {
         gotItBtn.disabled = false;
         againBtn.disabled = false;
@@ -141,7 +145,7 @@ function nextCard() {
     updateCard();
 }
 
-// listeners  
+// listeners flashcards
 flipBtn.addEventListener('click', flipCard);
 flashcard.addEventListener('click', flipCard);
 
@@ -158,7 +162,7 @@ againBtn.addEventListener('click', () => {
     }
 });
 
-// support for flashcards
+// keyboard support for flashcards
 flashcard.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -178,9 +182,10 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// memory match
 
-// array utility
+// MEMORY MATCH 
+
+// shuffle utility
 function shuffleArray(array) {
     const shuffled = [...array];
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -203,7 +208,7 @@ function initMemoryGame() {
     renderMemoryGrid();
 }
 
-// memory grid
+//  memory grid
 function renderMemoryGrid() {
     memoryGrid.innerHTML = '';
     
@@ -234,7 +239,7 @@ function renderMemoryGrid() {
     });
 }
 
-// memory grid
+//  memory Grid
 memoryGrid.addEventListener('click', (e) => {
     const cardEl = e.target.closest('.memory-card');
     if (cardEl) {
@@ -252,9 +257,9 @@ memoryGrid.addEventListener('keydown', (e) => {
     }
 });
 
-// card click
+// handle click
 function handleCardClick(cardEl) {
-    // invalid clicks
+    // Guardrails: prevent invalid clicks
     if (!canFlip) return;
     if (cardEl.classList.contains('flipped')) return;
     if (cardEl.classList.contains('matched')) return;
@@ -273,13 +278,13 @@ function handleCardClick(cardEl) {
     }
 }
 
-// check  match
+// check match
 function checkMatch() {
     canFlip = false;
     const [card1, card2] = flippedCards;
 
     if (card1.id === card2.id) {
-        // match found
+        // match 
         setTimeout(() => {
             card1.element.classList.add('matched');
             card2.element.classList.add('matched');
@@ -289,7 +294,7 @@ function checkMatch() {
             flippedCards = [];
             canFlip = true;
 
-            //  win condition
+            // win condition
             if (matchedPairs === memoryPairs.length / 2) {
                 setTimeout(() => {
                     winMessage.textContent = `🎉 YOU WIN! Completed in ${moves} moves! 🎉`;
@@ -311,5 +316,5 @@ function checkMatch() {
 // reset 
 resetBtn.addEventListener('click', initMemoryGame);
 
-// and begin
+// begin
 updateCard();
